@@ -238,6 +238,9 @@ public class EnterHtmlFormFragmentController extends BaseHtmlFormFragmentControl
         }
 
         Encounter formEncounter = fes.getContext().getMode() == FormEntryContext.Mode.ENTER ? fes.getSubmissionActions().getEncountersToCreate().get(0) : encounter;
+        if (fes.getContext().getMode() == FormEntryContext.Mode.ENTER) {
+        	formEncounter.setEncounterDatetime(new Date());
+        }
 
         // we don't want to lose any time information just because we edited it with a form that only collects date
         if (fes.getContext().getMode() == FormEntryContext.Mode.EDIT && hasNoTimeComponent(formEncounter.getEncounterDatetime())) {
